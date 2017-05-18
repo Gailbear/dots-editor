@@ -1,7 +1,5 @@
-import pygame, sys
-from utf8_braille import Cell
-import io
-import argparse
+import pygame, sys, pkg_resources, io, argparse
+from .utf8_braille import Cell
 
 # game settings
 black = 0,0,0
@@ -35,7 +33,8 @@ def game(filename, savemode):
     keys = Cell()
     num_down = 0
 
-    font = pygame.font.Font("SIMBRL.TTF", 20)
+    ttf_obj = pkg_resources.resource_stream('dots_editor', 'SIMBRL.TTF')
+    font = pygame.font.Font(ttf_obj, 20)
 
     sentence = []
 
@@ -131,11 +130,3 @@ def key_to_dot(key):
     if key == pygame.K_l:
         return 6
     return None
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("filename", default="out.txt", help="the name of the file to save")
-    parser.add_argument("--encoding", default="ascii", help="the encoding to use - default ascii (.brl)")
-    parser.add_argument("--unicode", action="store_const", const="utf8", dest="encoding", help="use unicode encoding")
-    args = parser.parse_args(sys.argv[1:])
-    game(args.filename, args.encoding)
