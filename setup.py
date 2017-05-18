@@ -6,7 +6,7 @@ here = path.abspath(path.dirname(__file__))
 
 setup(
     name='dots_editor',
-    version='0.3.1',
+    use_scm_version=True,
     description='A python-based six-key braille emulator',
     author='Gail Terman',
     author_email='gterman@gmail.com',
@@ -26,7 +26,7 @@ setup(
     ],
     keywords='braile pygame editor',
     packages=find_packages(),
-    install_requires=['pygame', 'argparse'],
+    install_requires=['pygame', 'argparse', 'setuptools_scm'],
     package_data={
         'dots_editor': ['FreeMono.ttf'],
     },
