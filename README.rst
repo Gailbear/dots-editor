@@ -1,7 +1,7 @@
 Dots Editor
 ===========
 A six-key braille emulator written in python.
--------
+---------------------------------------------
 |version| |license| |dependencies| |travis|
 
 Mostly because I was sick of there not being one that is free, easy to use, and easy to install on any operating system.
