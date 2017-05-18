@@ -25,7 +25,7 @@ setup(
         'Topic :: Text Editors :: Text Processing',
     ],
     keywords='braile pygame editor',
-    packages=find_packages(),
+    packages=find_packages(exclude=['tests']),
     install_requires=['pygame', 'argparse', 'setuptools_scm'],
     package_data={
         'dots_editor': ['FreeMono.ttf'],

@@ -25,3 +25,6 @@ class Cell:
 
     def __nonzero__(self):
         return any(self.cell)
+
+    def __eq__(self, other):
+        return self.cell == other.cell
