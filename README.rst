@@ -18,3 +18,10 @@ _____
 ``dots_editor filename.brl``
 
 This will open a file for editing. When you quit (I know, scary), it will save.
+
+Features to add
+---------------
+- Edit an existing file (I know, big oversight)
+- Change font size
+- Start standalone
+- Menu to make a new file or open an existing one

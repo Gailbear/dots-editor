@@ -6,11 +6,12 @@ here = path.abspath(path.dirname(__file__))
 
 setup(
     name='dots_editor',
-    version='0.3',
+    version='0.3.1',
     description='A python-based six-key braille emulator',
     author='Gail Terman',
     author_email='gterman@gmail.com',
     license='MIT',
+    url='https://github.com/Gailbear/dots-editor',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Environment :: Other Environment',
