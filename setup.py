@@ -6,7 +6,7 @@ here = path.abspath(path.dirname(__file__))
 
 setup(
     name='dots_editor',
-    version='0.2',
+    version='0.3',
     description='A python-based six-key braille emulator',
     author='Gail Terman',
     author_email='gterman@gmail.com',
@@ -27,7 +27,7 @@ setup(
     packages=find_packages(),
     install_requires=['pygame', 'argparse'],
     package_data={
-        'dots_editor': ['SIMBRL.TTF'],
+        'dots_editor': ['FreeMono.ttf'],
     },
     entry_points={
         'console_scripts': [
@@ -35,4 +35,3 @@ setup(
         ],
     },
 )
-

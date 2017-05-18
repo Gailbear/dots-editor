@@ -9,8 +9,8 @@ def main(args=None):
     parser.add_argument("--encoding", default="ascii", help="the encoding to use - default ascii (.brl)")
     parser.add_argument("--unicode", action="store_const", const="utf8", dest="encoding", help="use unicode encoding")
     args = parser.parse_args(args)
-    core.game(args.filename, args.encoding)
-
+    game = core.Game(args.filename, args.encoding)
+    game.loop()
 
 if __name__ == "__main__":
     main()
