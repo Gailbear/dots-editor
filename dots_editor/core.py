@@ -14,9 +14,9 @@ NEUTRAL = "neutral"
 
 # trans table
 ascii_braille_trans = u" A1B'K2L@CIF/MSP\"E3H9O6R^DJG>NTQ,*5<-U8V.%[$+X!&;:4\\0Z7(_?W]#Y)="
-utf8_braille_trans = range(0x2800, 0x283F)
+utf8_braille_trans = range(0x2800, 0x2840)
 trans_table = dict(zip(utf8_braille_trans, ascii_braille_trans))
-trans_table.update([(x, None) for x in range(0x2840,0x28ff)])
+trans_table.update([(x, None) for x in range(0x2840,0x2900)])
 
 def game(filename, savemode):
     pygame.init()
@@ -33,7 +33,7 @@ def game(filename, savemode):
     keys = Cell()
     num_down = 0
 
-    ttf_obj = pkg_resources.resource_stream('dots_editor', 'SIMBRL.TTF')
+    ttf_obj = pkg_resources.resource_stream('dots_editor', 'FreeMono.ttf')
     font = pygame.font.Font(ttf_obj, 20)
 
     sentence = []
@@ -102,8 +102,7 @@ def ascii_lines(lines):
 def draw_sentence(sentence, screen, font):
     screen.fill(white)
     u_lines = sentence_to_lines(sentence)
-    a_lines = ascii_lines(u_lines)
-    draw_lines(0, 0, a_lines, screen, font)
+    draw_lines(0, 0, u_lines, screen, font)
 
 def save_sentence(sentence, filename, ascii_mode = False):
     lines = sentence_to_lines(sentence)

@@ -6,7 +6,7 @@ here = path.abspath(path.dirname(__file__))
 
 setup(
     name='dots_editor',
-    version='0.1',
+    version='0.2',
     description='A python-based six-key braille emulator',
     author='Gail Terman',
     author_email='gterman@gmail.com',
