@@ -2,7 +2,7 @@ Dots Editor
 ===========
 A six-key braille emulator written in python.
 -------
-|version| |license| |dependencies|
+|version| |license| |dependencies| |travis|
 
 Mostly because I was sick of there not being one that is free, easy to use, and easy to install on any operating system.
 
@@ -31,3 +31,5 @@ Features to add
 .. |version| image:: https://img.shields.io/pypi/v/dots-editor.svg
     :target: https://pypi.python.org/pypi/dots-editor
 .. |dependencies| image:: https://img.shields.io/librariesio/github/gailbear/dots-editor.svg
+.. |travis| image:: https://travis-ci.org/Gailbear/dots-editor.svg?branch=master
+    :target: https://travis-ci.org/Gailbear/dots-editor
