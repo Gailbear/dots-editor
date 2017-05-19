@@ -5,21 +5,21 @@ A six-key brailler emulator written in python.
 |version| |license| |dependencies| |travis|
 
 .. |license| image:: https://img.shields.io/badge/license-MIT-blue.svg
+    :target: https://github.com/Gailbear/dots-editor/blob/master/LICENSE.txt
 .. |version| image:: https://img.shields.io/pypi/v/dots-editor.svg
     :target: https://pypi.python.org/pypi/dots-editor
 .. |dependencies| image:: https://img.shields.io/librariesio/github/gailbear/dots-editor.svg
+    :target: https://libraries.io/github/Gailbear/dots-editor
 .. |travis| image:: https://travis-ci.org/Gailbear/dots-editor.svg?branch=master
     :target: https://travis-ci.org/Gailbear/dots-editor
 
 Tired of being on a mac and having no viable options for a six-key brailler emulator?
-
 Tired of not being able to fix bugs or request features with existing emulators?
-
-**Me too**
+**Me too!**
 
 I was sick of there not being an emulator that is free, easy to use, and easy to install on any operating system.
 
-This is in Pre-Alpha. Expect bugs, and missing features?
+This is in Pre-Alpha. Expect bugs, and missing features.
 
 Installation
 ------------
