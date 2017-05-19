@@ -11,7 +11,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 setup(
     name='dots_editor',
     use_scm_version=True,
-    description='A python-based six-key braille emulator',
+    description='A six-key brailler emulator written in python.',
     long_description=long_description,
     author='Gail Terman',
     author_email='gterman@gmail.com',
