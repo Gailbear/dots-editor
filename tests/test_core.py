@@ -2,6 +2,7 @@ from dots_editor import core, utf8_braille
 import os, pygame, pytest
 
 TEST_STRING = u'\u2801\u2803\u2809\u2819\u2811'
+TEST_FILENAME = 'test.txt'
 
 def test_setenv():
     assert os.environ["SDL_VIDEODRIVER"] == "dummy"
@@ -34,23 +35,37 @@ def test_ascii_lines(game):
     assert len(a_lines) == 1
     assert a_lines[0] == 'ABCDE'
 
-def test_save_sentence_ascii(game, tmpdir):
+def test_save_sentences_ascii(game, tmpdir):
     assert game.savemode == 'ascii'
-    game.save_sentence()
-    f = tmpdir.join('test.txt')
+    game.save_sentences()
+    f = tmpdir.join(TEST_FILENAME)
     assert f.check()
     assert f.read() == 'ABCDE'
 
-def test_save_sentence_ascii(game, tmpdir):
+def test_save_sentences_unicode(game, tmpdir):
     game.savemode = 'unicode'
-    game.save_sentence()
-    f = tmpdir.join('test.txt')
+    game.save_sentences()
+    f = tmpdir.join(TEST_FILENAME)
     assert f.check()
     assert f.read_text('utf8') == TEST_STRING
 
-def test_draw_sentence(game):
+def test_save_sentences_ascii_2_sentences(game_2lines, tmpdir):
+    assert game_2lines.savemode == 'ascii'
+    game_2lines.save_sentences()
+    f = tmpdir.join(TEST_FILENAME)
+    assert f.check()
+    assert f.read() == 'ABCDE\nABCDE'
+
+def test_save_sentences_unicode_2_sentences(game_2lines, tmpdir):
+    game_2lines.savemode = 'unicode'
+    game_2lines.save_sentences()
+    f = tmpdir.join(TEST_FILENAME)
+    assert f.check()
+    assert f.read_text('utf8') == TEST_STRING + u'\n' + TEST_STRING
+
+def test_draw_sentences(game):
     # not that we can see the lines, just that it doesn't throw errors
-    game.draw_sentence()
+    game.draw_sentences()
     assert True
 
 def make_cells(chars):
@@ -60,5 +75,10 @@ def make_cells(chars):
 def game(tmpdir):
     f = tmpdir.join('test.txt')
     game = core.Game(str(f), 'ascii')
-    game.sentence = make_cells(u'\u2801\u2803\u2809\u2819\u2811')
+    game.sentence = make_cells(TEST_STRING)
+    return game
+
+@pytest.fixture
+def game_2lines(game):
+    game.sentences.append(game.sentence)
     return game

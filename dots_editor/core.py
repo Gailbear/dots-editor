@@ -42,6 +42,7 @@ class Game(object):
         self.keys = Cell()
         self.num_down = 0
         self.sentence = []
+        self.sentences = []
         self.filename = filename
         self.savemode = savemode
 
@@ -49,7 +50,7 @@ class Game(object):
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    self.save_sentence()
+                    self.save_sentences()
                     sys.exit()
 
                 if event.type == pygame.KEYDOWN:
@@ -57,12 +58,19 @@ class Game(object):
                         continue
                     if self.phase == NEUTRAL:
                         if event.key == pygame.K_BACKSPACE:
-                            self.sentence = self.sentence[:-1]
-                            self.draw_sentence()
+                            if len(self.sentence) < 1 and len(self.sentences) > 0:
+                                self.sentence = self.sentences.pop()
+                            else:
+                                self.sentence = self.sentence[:-1]
+                            self.draw_sentences()
                             continue
                         if event.key == pygame.K_SPACE:
                             self.sentence.append(Cell())
-                            self.draw_sentence()
+                            self.draw_sentences()
+                            continue
+                        if event.key == pygame.K_RETURN:
+                            self.sentences.append(self.sentence)
+                            self.sentence = []
                             continue
                         self.phase = DOWN
                     self.num_down += 1
@@ -81,7 +89,7 @@ class Game(object):
 
             if self.phase == NEUTRAL and self.keys:
                 self.sentence.append(self.keys)
-                self.draw_sentence()
+                self.draw_sentences()
                 self.keys = Cell()
 
             pygame.display.flip()
@@ -94,23 +102,34 @@ class Game(object):
         self.screen.blit(text,[left, top])
         return self.draw_lines(top + text.get_height(), left, cells[1:])
 
+    def sentences_to_lines(self):
+        lines = []
+        for sentence in self.sentences:
+            print "appending sentence:", sentence
+            lines.extend(self.sentence_to_lines(sentence))
+        print "appending current sentence:" , self.sentence
+        lines.extend(self.sentence_to_lines())
+        print lines
+        return lines
 
-    def sentence_to_lines(self):
-        u_sentence = [unicode(c) for c in self.sentence]
-        lines = [u_sentence[i:i+cells] for i in xrange(0, len(self.sentence), cells)]
+    def sentence_to_lines(self, sentence = None):
+        if not sentence:
+            sentence = self.sentence
+        u_sentence = [unicode(c) for c in sentence]
+        lines = [u_sentence[i:i+cells] for i in xrange(0, len(sentence), cells)]
         u_lines = [u''.join(l) for l in lines]
         return u_lines
 
     def ascii_lines(self, lines):
         return [line.translate(trans_table).encode("ascii") for line in lines]
 
-    def draw_sentence(self):
+    def draw_sentences(self):
         self.draw_background()
-        u_lines = self.sentence_to_lines()
+        u_lines = self.sentences_to_lines()
         self.draw_lines(0, 0, u_lines)
 
-    def save_sentence(self):
-        lines = self.sentence_to_lines()
+    def save_sentences(self):
+        lines = self.sentences_to_lines()
         if self.savemode == "ascii":
             lines = self.ascii_lines(lines)
             with open(self.filename, 'w') as w:

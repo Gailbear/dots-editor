@@ -44,6 +44,7 @@ Pre-Alpha features to add
 - Menu to make a new file or open an existing one
 - Save without exit
 - Binaries for common operating systems
+- Cursor
 
 Alpha features to add
 ---------------------
